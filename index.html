@@ -845,7 +845,8 @@
 
   @media (max-width: 768px) {
     .timeline {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
       gap: 20px;
     }
 
@@ -861,6 +862,18 @@
     .timeline-item::before {
       display: none;
     }
+
+    /* Reorder items chronologically on mobile */
+    .timeline-left:nth-of-type(1) { order: 1; }  /* 2022年 */
+    .timeline-right:nth-of-type(2) { order: 2; } /* 2025年3月 */
+    .timeline-left:nth-of-type(3) { order: 3; }  /* 2025年7月 */
+    .timeline-right:nth-of-type(4) { order: 4; } /* 2025年8月 */
+    .timeline-left:nth-of-type(5) { order: 5; }  /* 2025年10月 */
+    .timeline-right:nth-of-type(6) { order: 6; } /* 2026年1月 */
+    .timeline-left:nth-of-type(7) { order: 7; }  /* 2026年2月寒假 */
+    .timeline-right:nth-of-type(8) { order: 8; } /* 2026年2月探月 */
+    .timeline-left:nth-of-type(9) { order: 9; }  /* 2026年3月 */
+    .timeline-right:nth-of-type(10) { order: 10; } /* 2026年4月 */
   }
 
   /* Skills Section */
