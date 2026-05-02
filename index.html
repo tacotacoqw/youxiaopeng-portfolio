@@ -1720,6 +1720,22 @@
       mouseRotationX = -((mouseY - centerY) / centerY) * 10; // 10 degrees
     });
 
+    // Touch control for rotation (mobile support)
+    document.addEventListener('touchmove', function(e) {
+      if (loadingScreen.classList.contains('hidden')) return;
+
+      const touch = e.touches[0];
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const touchX = touch.clientX;
+      const touchY = touch.clientY;
+
+      // Calculate touch-based rotation
+      // Limit the rotation range to make it subtle
+      mouseRotationY = ((touchX - centerX) / centerX) * 15; // 15 degrees
+      mouseRotationX = -((touchY - centerY) / centerY) * 10; // 10 degrees
+    });
+
     // Smooth rotation animation
     function animateRotation() {
       // Always increment auto rotation
