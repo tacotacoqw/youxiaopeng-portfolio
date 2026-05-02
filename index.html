@@ -853,6 +853,7 @@
     .timeline-left,
     .timeline-right {
       text-align: left;
+      display: contents;
     }
 
     .timeline-center {
@@ -863,12 +864,7 @@
       display: none;
     }
 
-    /* Use data-order attribute to reorder items chronologically on mobile */
-    .timeline-left[data-order="1"],
-    .timeline-right[data-order="2"] {
-      display: contents;
-    }
-
+    /* Assign order to each timeline item for chronological display */
     .timeline-left[data-order="1"] .timeline-item:nth-child(1) { order: 1; }  /* 2022年 */
     .timeline-right[data-order="2"] .timeline-item:nth-child(1) { order: 2; } /* 2025年3月 */
     .timeline-left[data-order="1"] .timeline-item:nth-child(2) { order: 3; }  /* 2025年7月 */
@@ -879,6 +875,10 @@
     .timeline-right[data-order="2"] .timeline-item:nth-child(4) { order: 8; } /* 2026年2月探月 */
     .timeline-left[data-order="1"] .timeline-item:nth-child(5) { order: 9; }  /* 2026年3月 */
     .timeline-right[data-order="2"] .timeline-item:nth-child(5) { order: 10; } /* 2026年4月 */
+
+    .timeline-item {
+      margin-bottom: 0;
+    }
   }
 
   /* Skills Section */
