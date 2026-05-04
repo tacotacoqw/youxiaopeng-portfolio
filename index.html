@@ -1086,20 +1086,21 @@
 
   <!-- Navigation -->
   <nav class="navbar">
-    <a href="#hero" class="navbar-logo">游小鹏</a>
+    <a href="#projects" class="navbar-logo">游小鹏</a>
     <div class="navbar-menu">
-      <a href="#hero" class="navbar-link">首页</a>
+      <a href="#projects" class="navbar-link">项目</a>
       <a href="#about" class="navbar-link">关于</a>
+      <a href="#competitions" class="navbar-link">比赛</a>
       <a href="#journey" class="navbar-link">经历</a>
       <a href="#skills" class="navbar-link">技能</a>
-      <a href="#competitions" class="navbar-link">比赛</a>
-      <a href="#projects" class="navbar-link">项目</a>
       <a href="#contact" class="navbar-link">联系我</a>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="hero">
+  <!-- Projects Section - MOVED TO TOP -->
+  <section class="projects-section" id="projects" style="padding-top: 120px;">
+    <div class="section-container">
+      <h2 class="projects-title">我的项目</h2>
     <div class="hero-container">
       <div class="hero-text">
         <h1>你好，我是游小鹏</h1>
@@ -1560,6 +1561,826 @@
       <h2 class="contact-title">联系我</h2>
     </div>
   </section>
+
+  <!-- Modal -->
+  <div id="modal" class="modal" onclick="closeModal(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <h2 class="modal-title" id="modal-title"></h2>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <script>
+    const projects = {
+      project1: {
+        title: '智能少年网页',
+        content: `
+          <img src="images/project1.png" alt="智能少年网页截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>这是我参加智能少年的第一个作品，也是我第一次练习 Vibe Coding 做的网页。通过这个项目，我学会了如何把网站上线到 GitHub，并使用 Git 技术管理文档。</p>
+          </div>
+          <div class="modal-section">
+            <h4>项目亮点</h4>
+            <p>• 第一次完整的 Web 开发实践<br>
+               • 学习并使用 Git 版本控制<br>
+               • 成功部署到线上环境</p>
+          </div>
+        `
+      },
+      project2: {
+        title: '智能商城',
+        content: `
+          <img src="images/project2.jpg" alt="智能商城截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>这是我第一次参加 Vibe Coding 比赛的作品，参加的是 Trae 的黑客松比赛，最终获得三等奖。</p>
+          </div>
+          <div class="modal-section">
+            <h4>解决的问题</h4>
+            <p>智能少年的同学们做完作品后不知道应该上线到哪个网站，我做了这个商城，他们就可以通过这个网站去展示和交易自己的作品。</p>
+          </div>
+        `
+      },
+      project3: {
+        title: '作业打卡微信小程序',
+        content: `
+          <img src="images/project3.png" alt="作业打卡微信小程序截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>班级群里的学科作业提交很乱，家长和学生需要在不同软件之间切换才能提交作业，非常不方便。</p>
+          </div>
+          <div class="modal-section">
+            <h4>解决方案</h4>
+            <p>我结合 3 个学科的需求，做了一个作业打卡提交器。通过这个小程序，家长和学生可以在一个地方完成所有作业的提交，不用再频繁切换软件。</p>
+          </div>
+        `
+      },
+      project4: {
+        title: '盲人化妆软件「状点你的眼」',
+        content: `
+          <img src="images/project4.jpg" alt="盲人化妆软件截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>这是我第二次参加 Vibe Coding 比赛的作品，参加的是探月学校举办的黑客松，最终获得一等奖。</p>
+          </div>
+          <div class="modal-section">
+            <h4>创意来源</h4>
+            <p>我们组的一个女生在小红书上看到盲人不能自己化妆，所以想做一个软件帮助他们独立化妆。这个想法打动了我们，于是我们决定把它做出来。</p>
+          </div>
+        `
+      },
+      project5: {
+        title: '黑白照片转彩色照片',
+        content: `
+          <img src="images/project5.png" alt="黑白照片转彩色照片截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>这是我来到未来火种学校后的第一个项目。我想做一个能把黑白照片转成彩色照片的网站。</p>
+          </div>
+          <div class="modal-section">
+            <h4>功能特点</h4>
+            <p>• 照片上色<br>
+               • 视频上色<br>
+               • 老照片修复<br>
+               • 完整的用户系统<br>
+               • 支付功能</p>
+          </div>
+        `
+      },
+      project6: {
+        title: '跑酷游戏',
+        content: `
+          <img src="images/project6.png" alt="跑酷游戏截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>这个项目是在国庆科创营做的。我发现有些人因为冬天在家就不想运动，还有些人因为没什么钱或者家里空间不大，不能买跑步机。</p>
+          </div>
+          <div class="modal-section">
+            <h4>解决方案</h4>
+            <p>我做了这个跑酷游戏，让大家可以在家里通过游戏的方式进行运动，不需要购买昂贵的跑步机，也不需要很大的空间。</p>
+          </div>
+        `
+      },
+      project7: {
+        title: '肥肉检测软件',
+        content: `
+          <img src="images/project7.png" alt="肥肉检测软件截图" class="modal-image">
+          <div class="modal-section">
+            <h4>项目背景</h4>
+            <p>我舅舅希望可以帮助厂里做一个检测肉的系统，能够自动识别肥肉和瘦肉。</p>
+          </div>
+          <div class="modal-section">
+            <h4>解决方案</h4>
+            <p>我开发了这个肥肉检测软件，通过计算机视觉技术识别肥肉和瘦肉，然后程序会告诉硬件应该把肉推到哪个框里。</p>
+          </div>
+        `
+      }
+    };
+
+    function openModal(projectId) {
+      const project = projects[projectId];
+      if (!project) return;
+
+      document.getElementById('modal-title').textContent = project.title;
+      document.getElementById('modal-body').innerHTML = project.content;
+      document.getElementById('modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(event) {
+      if (!event || event.target.id === 'modal' || event.target.classList.contains('modal-close')) {
+        document.getElementById('modal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // Loading Screen Animation
+    const loadingScreen = document.getElementById('loadingScreen');
+    const loadingTextWrapper = document.getElementById('loadingTextWrapper');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    let progress = 0;
+    let rotationX = -15; // Start with tilted angle
+    let rotationY = 0;
+    let targetRotationX = -15; // Default tilt angle
+    let targetRotationY = 0;
+    let autoRotationY = 0;
+    let isMouseActive = false;
+    let mouseTimeout;
+
+    // Create text characters around the circle
+    const text = '游小鹏 · 游小鹏 · 游小鹏 · 游小鹏 · ';
+    const chars = text.split('');
+    const radius = 280;
+    const angleStep = 360 / chars.length;
+
+    chars.forEach((char, index) => {
+      const charElement = document.createElement('div');
+      charElement.className = 'loading-char';
+      charElement.textContent = char;
+
+      const angle = index * angleStep;
+      const x = 0;
+      const y = 0;
+      const z = radius;
+
+      // Calculate scale to compensate for perspective distortion
+      // Characters further from viewer (negative Z after rotation) should be larger
+      const angleRad = (angle * Math.PI) / 180;
+      const zPosition = Math.cos(angleRad) * radius;
+      const perspectiveDistance = 1000; // Match the perspective value
+      const scale = perspectiveDistance / (perspectiveDistance - zPosition);
+
+      charElement.style.transform = `translate(-50%, -50%) rotateY(${angle}deg) translateZ(${z}px) scale(${scale})`;
+
+      loadingTextWrapper.appendChild(charElement);
+    });
+
+    // Mouse control for rotation
+    let mouseRotationY = 0;
+    let mouseRotationX = 0;
+
+    document.addEventListener('mousemove', function(e) {
+      if (loadingScreen.classList.contains('hidden')) return;
+
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      // Calculate mouse-based rotation
+      // Limit the rotation range to make it subtle
+      mouseRotationY = ((mouseX - centerX) / centerX) * 15; // 15 degrees
+      mouseRotationX = -((mouseY - centerY) / centerY) * 10; // 10 degrees
+    });
+
+    // Touch control for rotation (mobile support)
+    document.addEventListener('touchmove', function(e) {
+      if (loadingScreen.classList.contains('hidden')) return;
+
+      const touch = e.touches[0];
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+      const touchX = touch.clientX;
+      const touchY = touch.clientY;
+
+      // Calculate touch-based rotation
+      // Limit the rotation range to make it subtle
+      mouseRotationY = ((touchX - centerX) / centerX) * 15; // 15 degrees
+      mouseRotationX = -((touchY - centerY) / centerY) * 10; // 10 degrees
+    });
+
+    // Smooth rotation animation
+    function animateRotation() {
+      // Always increment auto rotation
+      autoRotationY += 0.3;
+
+      // Combine auto rotation with mouse rotation
+      targetRotationY = autoRotationY + mouseRotationY;
+      targetRotationX = -15 + mouseRotationX; // Changed from 20 to -15 for tilted angle
+
+      rotationX += (targetRotationX - rotationX) * 0.1;
+      rotationY += (targetRotationY - rotationY) * 0.1;
+
+      loadingTextWrapper.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+
+      requestAnimationFrame(animateRotation);
+    }
+
+    animateRotation();
+
+    // Progress bar animation
+    function updateProgress() {
+      if (progress < 100) {
+        progress += Math.random() * 15 + 5;
+        if (progress > 100) progress = 100;
+
+        progressBar.style.width = progress + '%';
+        progressText.textContent = Math.floor(progress) + '%';
+
+        setTimeout(updateProgress, 150 + Math.random() * 200);
+      } else {
+        setTimeout(function() {
+          loadingScreen.classList.add('hidden');
+          setTimeout(function() {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }, 300);
+      }
+    }
+
+    // Start loading animation when page loads
+    window.addEventListener('load', function() {
+      setTimeout(updateProgress, 500);
+    });
+
+    // Email popup toggle
+    function toggleEmailPopup() {
+      const popup = document.getElementById('emailPopup');
+      popup.classList.toggle('active');
+    }
+
+    // WeChat QR code toggle
+    function toggleWechatQR() {
+      const qr = document.getElementById('wechatQR');
+      qr.classList.toggle('active');
+    }
+
+    // Close popups when clicking outside
+    document.addEventListener('click', function(e) {
+      const emailPopup = document.getElementById('emailPopup');
+      const wechatQR = document.getElementById('wechatQR');
+      const emailIcon = document.querySelector('.contact-item:nth-child(1) .contact-icon');
+      const wechatWrapper = document.querySelector('.wechat-qr-wrapper');
+
+      // Close email popup if clicking outside
+      if (emailPopup && emailIcon && !emailIcon.contains(e.target) && !emailPopup.contains(e.target)) {
+        emailPopup.classList.remove('active');
+      }
+
+      // Close WeChat QR if clicking outside
+      if (wechatQR && wechatWrapper && !wechatWrapper.contains(e.target)) {
+        wechatQR.classList.remove('active');
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll Animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    // Add scroll animation to elements
+    window.addEventListener('load', () => {
+      // Animate sections
+      document.querySelectorAll('.section').forEach(el => {
+        el.classList.add('scroll-animate');
+        observer.observe(el);
+      });
+
+      // Animate stat cards
+      document.querySelectorAll('.stat-card').forEach(el => {
+        el.classList.add('scroll-animate');
+        observer.observe(el);
+      });
+
+      // Animate project items
+      document.querySelectorAll('.project-item').forEach((el, index) => {
+        if (index % 2 === 0) {
+          el.classList.add('scroll-animate-left');
+        } else {
+          el.classList.add('scroll-animate-right');
+        }
+        observer.observe(el);
+      });
+
+      // Animate timeline items
+      document.querySelectorAll('.timeline-item').forEach((el, index) => {
+        if (el.parentElement.classList.contains('timeline-left')) {
+          el.classList.add('scroll-animate-left');
+        } else {
+          el.classList.add('scroll-animate-right');
+        }
+        observer.observe(el);
+      });
+
+      // Animate skill categories
+      document.querySelectorAll('.skill-category').forEach(el => {
+        el.classList.add('scroll-animate');
+        observer.observe(el);
+      });
+
+      // Animate about text
+      document.querySelectorAll('.about-text').forEach(el => {
+        el.classList.add('scroll-animate');
+        observer.observe(el);
+      });
+    });
+  </script>
+
+</body>
+</html><!-- Projects Section -->
+  <section class="section" id="projects" style="background: #fafafa;">
+    <div class="section-container">
+      <h2 class="section-title">我的项目</h2>
+
+      <!-- Project 1 -->
+      <div class="project-item">
+        <div class="project-content">
+          <div class="project-date">2025年8月</div>
+          <h3 class="project-title">智能少年网页</h3>
+          <p class="project-desc">第一次 Vibe Coding 实践，上线到 GitHub</p>
+          <div class="project-details">
+            这是我参加智能少年的第一个作品，也是我第一次练习 Vibe Coding 做的网页。通过这个项目，我学会了如何把网站上线到 GitHub，并使用 Git 技术管理文档。
+          </div>
+          <a href="http://taco.aiteenagers.cn" target="_blank" class="project-link">访问网站 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project1.png" alt="智能少年网页" class="project-image">
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-date">2025年8月</div>
+          <h3 class="project-title">智能商城</h3>
+          <p class="project-desc">Trae 黑客松三等奖，解决作品展示问题</p>
+          <div class="project-details">
+            这是我第一次参加 Vibe Coding 比赛的作品，参加的是 Trae 的黑客松比赛，最终获得三等奖。智能少年的同学们做完作品后不知道应该上线到哪个网站，我做了这个商城，他们就可以通过这个网站去展示和交易自己的作品。
+          </div>
+          <a href="https://github.com/tacotacoqw/Mail" target="_blank" class="project-link">查看 GitHub 仓库 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project2.jpg" alt="智能商城" class="project-image">
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-item">
+        <div class="project-content">
+          <div class="project-date">2025年10月</div>
+          <h3 class="project-title">跑酷游戏</h3>
+          <p class="project-desc">国庆科创营作品，降低运动门槛</p>
+          <div class="project-details">
+            这个项目是在国庆科创营做的。我发现有些人因为冬天在家就不想运动，还有些人因为没什么钱或者家里空间不大，不能买跑步机。我做了这个跑酷游戏，让大家可以在家里通过游戏的方式进行运动。
+          </div>
+          <a href="https://github.com/tacotacoqw/Run-Game" target="_blank" class="project-link">查看 GitHub 仓库 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project6.png" alt="跑酷游戏" class="project-image">
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-date">2026年1月</div>
+          <h3 class="project-title">作业打卡微信小程序</h3>
+          <p class="project-desc">统一作业提交入口，提升使用体验</p>
+          <div class="project-details">
+            班级群里的学科作业提交很乱，家长和学生需要在不同软件之间切换才能提交作业，非常不方便。我结合 3 个学科的需求，做了一个作业打卡提交器。通过这个小程序，家长和学生可以在一个地方完成所有作业的提交。
+          </div>
+          <a href="https://github.com/tacotacoqw/homework-checkin" target="_blank" class="project-link">查看 GitHub 仓库 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project3.png" alt="作业打卡微信小程序" class="project-image">
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-item">
+        <div class="project-content">
+          <div class="project-date">2026年1月</div>
+          <h3 class="project-title">肥肉检测软件</h3>
+          <p class="project-desc">计算机视觉应用，帮助工厂自动分拣</p>
+          <div class="project-details">
+            我舅舅希望可以帮助厂里做一个检测肉的系统，能够自动识别肥肉和瘦肉。我开发了这个肥肉检测软件，通过计算机视觉技术识别肥肉和瘦肉，然后程序会告诉硬件应该把肉推到哪个框里。这样就可以帮助厂里的员工不用手动分拣肉了。
+          </div>
+          <a href="https://github.com/tacotacoqw/Meat" target="_blank" class="project-link">查看 GitHub 仓库 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project7.png" alt="肥肉检测软件" class="project-image">
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-date">2026年2月</div>
+          <h3 class="project-title">盲人化妆软件「状点你的眼」</h3>
+          <p class="project-desc">探月学校黑客松一等奖，iOS 全栈开发</p>
+          <div class="project-details">
+            这是我第二次参加 Vibe Coding 比赛的作品，参加的是探月学校举办的黑客松，最终获得一等奖。我们组的一个女生在小红书上看到盲人不能自己化妆，所以想做一个软件帮助他们独立化妆。软件是苹果端的，使用 Xcode 编写，我负责 iOS 端的全栈开发。
+          </div>
+          <a href="https://github.com/tacotacoqw/AIMakeupAssistant" target="_blank" class="project-link">查看 GitHub 仓库 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project4.jpg" alt="盲人化妆软件" class="project-image">
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="project-item">
+        <div class="project-content">
+          <div class="project-date">2026年3月</div>
+          <h3 class="project-title">黑白照片转彩色照片</h3>
+          <p class="project-desc">使用 AI 技术，上线到 recolor.top</p>
+          <div class="project-details">
+            这是我来到未来火种学校后的第一个项目。我想做一个能把黑白照片转成彩色照片的网站。摄影爱好者可以把拍的黑白照片变成彩色，老年人可以把年轻时候的照片变成彩色，历史爱好者可以把喜欢的名人的黑白照上色。使用 Replicate 平台的算法，完整实现前端、用户系统、支付等功能。
+          </div>
+          <a href="https://recolor.top/" target="_blank" class="project-link">访问网站 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project5.png" alt="黑白照片转彩色照片" class="project-image">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- About Section -->
+  <section class="section" id="about">
+    <div class="section-container">
+      <h2 class="section-title">关于我</h2>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">12</div>
+          <div class="stat-label">岁</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">7+</div>
+          <div class="stat-label">项目</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">3</div>
+          <div class="stat-label">黑客松</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">获奖</div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <div class="about-text">
+          <h3>关于我现在在做什么</h3>
+          <p>我在未来火种研究院学习——这是一所由文韬老师发起的 AI 原生学校，我们借助 AI 学习学科和做科创项目。在这里没有传统学校那种固定课表，我每天自己写计划，想做什么就把它写进当天的计划里。</p>
+          <p>我目前的重点是准备毕业考试。因为毕业考试需要考 4、5、6 年级的知识，所以我正在系统地复习和优化这三个年级的课程内容。我会借助 AI 来辅助学习，提高学习效率。当然，我目前也在深入了解 AI Coding 方向的探索。</p>
+        </div>
+        <div class="about-text">
+          <h3>关于我做事的方式</h3>
+          <p>我做事有一套很简单的判断标准——我对这件事感兴趣 + 它能顺便解决一个真实的问题，我就做。我不会想得太复杂，也不会列一堆规划。</p>
+          <p>我用一些方法论支撑我的学习：用 Susan 老师教的"超级学霸方法论"自学；用 SMART 原则安排每日计划；用麦肯锡30秒电梯法则筛选项目方向；用"干中学"在实战里学。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Competitions Section -->
+  <section class="section" id="competitions">
+    <div class="section-container">
+      <h2 class="section-title">我参加过的比赛</h2>
+
+      <!-- Competition 1 -->
+      <div class="project-item">
+        <div class="project-content">
+          <div class="project-date">2025年8月</div>
+          <h3 class="project-title">Trae Solo 黑客松</h3>
+          <p class="project-desc">第一次黑客松经历，获得三等奖</p>
+          <div class="project-details">
+            这是我第一次参加黑客松比赛。在这次比赛中，我开发了智能商城项目，为智能少年的同学们提供了一个展示和交易作品的平台。最终获得了三等奖，这次经历让我对 Vibe Coding 有了更深的理解。
+          </div>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project2.jpg" alt="Trae Solo 黑客松" class="project-image">
+        </div>
+      </div>
+
+      <!-- Competition 2 -->
+      <div class="project-item reverse">
+        <div class="project-content">
+          <div class="project-date">2026年2月</div>
+          <h3 class="project-title">北京探月学校 MoonShot 黑客松</h3>
+          <p class="project-desc">团队协作，获得一等奖</p>
+          <div class="project-details">
+            在这次黑客松中，我和团队一起开发了盲人化妆软件「状点你的眼」。我们从小红书上看到盲人不能自己化妆的痛点，决定用技术帮助他们独立化妆。我负责 iOS 端的全栈开发，最终我们获得了一等奖。
+          </div>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/project4.jpg" alt="北京探月学校 MoonShot 黑客松" class="project-image">
+        </div>
+      </div>
+
+      <!-- Competition 3 -->
+      <div class="project-item">
+        <div class="project-content">
+          <div class="project-date">2026年3月</div>
+          <h3 class="project-title">小红书巅峰赛黑客松</h3>
+          <p class="project-desc">AI 项目经理协作系统</p>
+          <div class="project-details">
+            我们的产品「别问我，问 Agent」，帮助需要快速发起协作项目的 OPC 团队、创业者和自由职业者，完成从需求拆解、任务分配到进度追踪和验收交付这项关键任务。通过让 AI 担任项目经理，减少他们找人难、分工乱、沟通成本高、交付不稳定的痛苦，并通过智能匹配人与 Agent，放大协作效率、交付确定性和跨时区协作能力。不同于传统外包平台、招聘平台或单点 AI 工具，我们提供的是一个"AI 统筹、人类与 Agent 协同交付"的完整协作系统。
+          </div>
+          <a href="https://github.com/my-pm-is-AI/fronted" target="_blank" class="project-link">查看 GitHub 仓库 →</a>
+        </div>
+        <div class="project-image-wrapper">
+          <img src="images/competition3.png" alt="小红书巅峰赛黑客松" class="project-image">
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- Journey Section -->
+  <section class="journey-section" id="journey">
+    <div class="journey-container">
+      <h2 class="journey-title">我的经历</h2>
+
+      <div class="timeline">
+        <!-- Left Column -->
+        <div class="timeline-left" data-order="1">
+
+          <div class="timeline-item">
+            <div class="timeline-year">2022年</div>
+            <div class="timeline-content">
+              <h3>三年级 · 开始接触编程</h3>
+              <p>上了一节信息技术课，对电脑产生兴趣。妈妈支持我的兴趣，开始帮我找各种编程班。</p>
+              <p>曾经加入过一个机构，但因为教的东西太老套，我退出了。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2025年7月</div>
+            <div class="timeline-content">
+              <h3>参加智能少年课程</h3>
+              <p>开始系统学习商业课和科技课，学习了麦肯锡30秒电梯法则等方法论。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2025年10月</div>
+            <div class="timeline-content">
+              <h3>参加国庆营</h3>
+              <p>在国庆营中做了跑酷游戏项目，降低运动门槛。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2026年2月</div>
+            <div class="timeline-content">
+              <h3>寒假智能少年训练营</h3>
+              <p>参加寒假训练营，学习了麦肯锡30秒电梯法则等方法论。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2026年3月</div>
+            <div class="timeline-content">
+              <h3>加入未来火种研究院</h3>
+              <p>这是一所 AI 原生的学校，由文韬老师发起。在这里我可以自己安排学习计划，借助 AI 和"超级学霸方法论"高效自学。</p>
+              <p>每天有早、中、晚三次复盘，用录音豆 + 飞书建立个人知识库。</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Center Timeline -->
+        <div class="timeline-center" data-order="0">
+          <div class="timeline-line"></div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="timeline-right" data-order="2">
+
+          <div class="timeline-item" style="margin-top: 80px;">
+            <div class="timeline-year">2025年3月</div>
+            <div class="timeline-content">
+              <h3>加入智能少年</h3>
+              <p>开始系统学习商业课和科技课。这是我编程学习的重要转折点。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2025年8月</div>
+            <div class="timeline-content">
+              <h3>Trae Solo 黑客松 · 三等奖</h3>
+              <p>第一次参加黑客松比赛，开发了智能商城项目，为智能少年的同学们提供了一个展示和交易作品的平台。获得三等奖。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2026年1月</div>
+            <div class="timeline-content">
+              <h3>参加清远战略会</h3>
+              <p>第一次进入"大人在认真讨论大事"的场域，认识了方总、Rosy 老师、小小老师、晓康老师、小罗老师等重要的老师。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2026年2月</div>
+            <div class="timeline-content">
+              <h3>探月学校黑客松 · 一等奖</h3>
+              <p>开发盲人化妆软件「状点你的眼」，担任技术负责人，独立完成 iOS 全栈开发。</p>
+              <p>使用在寒假训练营学到的麦肯锡30秒电梯法则选定项目方向。获得一等奖 + 人气奖。</p>
+              <p>YC 孵化器负责人约定：14 岁时根据实际情况决定是否投资 1400 万。</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-year">2026年4月</div>
+            <div class="timeline-content">
+              <h3>小红书巅峰赛黑客松</h3>
+              <p>作为年龄最小的参赛者参加上海小红书黑客松（2000+ 报名，200+ 入选）。</p>
+              <p>团队项目：「别问我，问 Agent」，担任前端 + 海报设计。接受中国新闻社记者采访。</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<!-- Skills Section -->
+  <section class="skills-section" id="skills">
+    <div class="skills-container">
+      <h2 class="skills-title">我的技能</h2>
+
+      <div class="skills-grid">
+
+        <!-- Programming Languages -->
+        <div class="skill-category">
+          <div class="skill-category-title">编程语言</div>
+          <div class="skill-tags">
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">Swift</div>
+            <div class="skill-tag">HTML/CSS</div>
+          </div>
+        </div>
+
+        <!-- AI Tools -->
+        <div class="skill-category">
+          <div class="skill-category-title">AI 工具</div>
+          <div class="skill-tags">
+            <div class="skill-tag">Claude Code</div>
+            <div class="skill-tag">ChatGPT</div>
+            <div class="skill-tag">Gemini</div>
+          </div>
+        </div>
+
+        <!-- Development Tools -->
+        <div class="skill-category">
+          <div class="skill-category-title">开发工具</div>
+          <div class="skill-tags">
+            <div class="skill-tag">Xcode</div>
+            <div class="skill-tag">GitHub</div>
+            <div class="skill-tag">微信开发者工具</div>
+            <div class="skill-tag">VS Code</div>
+          </div>
+        </div>
+
+        <!-- Frameworks & Platforms -->
+        <div class="skill-category">
+          <div class="skill-category-title">框架与平台</div>
+          <div class="skill-tags">
+            <div class="skill-tag">iOS 开发</div>
+            <div class="skill-tag">微信小程序</div>
+            <div class="skill-tag">Web 开发</div>
+            <div class="skill-tag">Replicate</div>
+          </div>
+        </div>
+
+        <!-- Methods & Concepts -->
+        <div class="skill-category">
+          <div class="skill-category-title">方法论</div>
+          <div class="skill-tags">
+            <div class="skill-tag">麦肯锡30秒电梯法则</div>
+            <div class="skill-tag">超级学霸方法论</div>
+            <div class="skill-tag">SMART 原则</div>
+            <div class="skill-tag">干中学</div>
+          </div>
+        </div>
+
+        <!-- Other Skills -->
+        <div class="skill-category">
+          <div class="skill-category-title">其他技能</div>
+          <div class="skill-tags">
+            <div class="skill-tag">全栈开发</div>
+            <div class="skill-tag">UI/UX 设计</div>
+            <div class="skill-tag">项目管理</div>
+            <div class="skill-tag">团队协作</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <div class="contact-container">
+      <div class="contact-items">
+
+        <!-- Email -->
+        <div class="contact-item">
+          <div class="contact-icon" onclick="toggleEmailPopup()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2c2c2c">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+          </div>
+          <div class="contact-label">邮箱</div>
+          <div class="contact-value">
+            <a href="mailto:peiqigogerge@gmail.com">peiqigogerge@gmail.com</a>
+          </div>
+          <div class="email-popup" id="emailPopup">
+            <div class="email-popup-text">peiqigogerge@gmail.com</div>
+          </div>
+        </div>
+
+        <!-- Douyin -->
+        <div class="contact-item">
+          <a href="https://www.douyin.com/user/self?from_tab_name=main" target="_blank" class="contact-icon">
+            <img src="images/douyin-professional.svg" alt="抖音">
+          </a>
+          <div class="contact-label">抖音</div>
+          <div class="contact-value">
+            <a href="https://www.douyin.com/user/self?from_tab_name=main" target="_blank">点击访问</a>
+          </div>
+        </div>
+
+        <!-- WeChat Channels -->
+        <div class="contact-item wechat-qr-wrapper">
+          <div class="contact-icon" onclick="toggleWechatQR()">
+            <img src="images/wechat-professional.svg" alt="微信视频号">
+          </div>
+          <div class="contact-label">微信视频号</div>
+          <div class="contact-value">扫码关注</div>
+          <div class="wechat-qr" id="wechatQR">
+            <img src="images/wechat-channels-qr.jpg" alt="微信视频号二维码">
+            <div class="wechat-qr-text">扫码关注我的视频号</div>
+          </div>
+        </div>
+
+      </div>
+      <h2 class="contact-title">联系我</h2>
+    </div>
+  </section>
+
+
 
   <!-- Modal -->
   <div id="modal" class="modal" onclick="closeModal(event)">
