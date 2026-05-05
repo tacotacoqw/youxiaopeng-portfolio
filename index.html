@@ -206,6 +206,64 @@
     color: var(--accent);
   }
 
+  .navbar-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    padding: 8px;
+  }
+
+  .navbar-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--text);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      padding: 15px 30px;
+    }
+
+    .navbar-toggle {
+      display: flex;
+    }
+
+    .navbar-menu {
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      flex-direction: column;
+      gap: 0;
+      padding: 20px 0;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .navbar-menu.active {
+      max-height: 500px;
+      opacity: 1;
+    }
+
+    .navbar-link {
+      padding: 15px 30px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar-link:last-child {
+      border-bottom: none;
+    }
+  }
+
   /* Hero Section */
   .hero {
     min-height: 50vh;
@@ -1088,7 +1146,12 @@
   <!-- Navigation -->
   <nav class="navbar">
     <a href="#hero" class="navbar-logo">游小鹏</a>
-    <div class="navbar-menu">
+    <div class="navbar-toggle" id="navbarToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="navbar-menu" id="navbarMenu">
       <a href="#hero" class="navbar-link">首页</a>
       <a href="#projects" class="navbar-link">项目</a>
       <a href="#about" class="navbar-link">关于</a>
@@ -1919,6 +1982,29 @@
         el.classList.add('scroll-animate');
         observer.observe(el);
       });
+    });
+
+    // Mobile Navigation Toggle
+    const navbarToggle = document.getElementById('navbarToggle');
+    const navbarMenu = document.getElementById('navbarMenu');
+
+    navbarToggle.addEventListener('click', function() {
+      navbarMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    document.querySelectorAll('.navbar-link').forEach(link => {
+      link.addEventListener('click', function() {
+        navbarMenu.classList.remove('active');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const isClickInsideNav = navbarToggle.contains(event.target) || navbarMenu.contains(event.target);
+      if (!isClickInsideNav && navbarMenu.classList.contains('active')) {
+        navbarMenu.classList.remove('active');
+      }
     });
   </script>
 
