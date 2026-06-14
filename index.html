@@ -7,8 +7,9 @@
 <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js" defer></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Serif+SC:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"></noscript>
+<!-- Matter.js is loaded on demand by the hero physics script (below) so it never blocks page render. -->
 <style>
   :root {
     --bg: #07070f;
@@ -2417,6 +2418,23 @@
     </div>
   </div>
 
+  <!-- Loading-screen fail-safe: runs in isolation so a hung CDN or a crash in the
+       main script can never trap the page behind the loader. -->
+  <script>
+    (function () {
+      function hideLoader() {
+        var ls = document.getElementById('loadingScreen');
+        if (ls && !ls.classList.contains('hidden')) {
+          ls.classList.add('hidden');
+          try { document.dispatchEvent(new CustomEvent('loadingDone')); } catch (e) {}
+          setTimeout(function () { ls.style.display = 'none'; }, 700);
+        }
+      }
+      // Absolute cap: no matter what, the loader is gone within 6s of the page appearing.
+      setTimeout(hideLoader, 6000);
+    })();
+  </script>
+
   <!-- Navigation -->
   <nav class="navbar" id="navbar">
     <a href="#hero" class="navbar-logo">游小鹏</a>
@@ -3010,6 +3028,16 @@
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+    // Run a callback as soon as the DOM is ready — never wait for window.load,
+    // which blocks on slow/failed external CDNs (Google Fonts, jsdelivr) and can hang the page.
+    function onReady(fn) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn);
+      } else {
+        fn();
+      }
+    }
+
     const projects = {
       project1: {
         title: '智能少年网页',
@@ -3535,6 +3563,19 @@
       const hint = document.getElementById('physHint');
       if (!container || !hero) return;
 
+      // Load Matter.js on demand so a slow/unreachable CDN never blocks the page.
+      let matterRequested = false;
+      function ensureMatter(cb) {
+        if (window.Matter) return cb();
+        if (matterRequested) return;
+        matterRequested = true;
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js';
+        s.onload = cb;
+        s.onerror = () => { /* CDN failed — skip the physics badges, page is unaffected */ };
+        document.head.appendChild(s);
+      }
+
       const svgIcon = paths =>
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + paths + '</svg>';
 
@@ -3703,9 +3744,9 @@
         requestAnimationFrame(loop);
       }
 
-      document.addEventListener('loadingDone', () => setTimeout(start, 400));
-      // Fallback in case the loading event never fires
-      window.addEventListener('load', () => setTimeout(start, 7000));
+      document.addEventListener('loadingDone', () => setTimeout(() => ensureMatter(start), 400));
+      // Fallback in case the loading event never fires (does not depend on window.load).
+      setTimeout(() => ensureMatter(start), 8000);
     })();
 
     // ===== Loading Screen Animation =====
@@ -3803,7 +3844,7 @@
       }
     }
 
-    window.addEventListener('load', function() {
+    onReady(function() {
       setTimeout(updateProgress, prefersReducedMotion ? 0 : 500);
     });
 
@@ -3864,7 +3905,7 @@
       });
     }, observerOptions);
 
-    window.addEventListener('load', () => {
+    onReady(() => {
       document.querySelectorAll('.section').forEach(el => {
         el.classList.add('scroll-animate');
         observer.observe(el);
