@@ -1,0 +1,9 @@
+.vercel
+
+# OS / editor
+.DS_Store
+
+# Old backups & scratch files (not for deploy)
+index.html.backup
+index.html.before-reorder
+source-code.txt
