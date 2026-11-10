@@ -7,3 +7,9 @@
 index.html.backup
 index.html.before-reorder
 source-code.txt
+
+index.html.pre-art-redesign
+v2.html.before-restyle
+*.before-*
+
+v2.html

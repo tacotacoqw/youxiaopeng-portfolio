@@ -1,0 +1,13 @@
+.git
+.vercel
+.DS_Store
+index.html.backup
+index.html.before-reorder
+index.html.pre-art-redesign
+source-code.txt
+v2.html.before-restyle
+*.before-*
+
+v2.html
+docs
+README.md
