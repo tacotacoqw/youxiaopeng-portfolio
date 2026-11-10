@@ -1,0 +1,39 @@
+MIT License
+
+Copyright (c) 2026 You Xiaopeng (游小鹏)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+--------------------------------------------------------------------------------
+
+What this license covers / 授权范围
+
+The MIT License above applies to the CODE in this repository only (index.html
+and the configuration files), including the pixel art that the code draws.
+
+It does NOT cover:
+  - anything in images/ and docs/ (personal photos, project screenshots, app
+    icons, QR code) — all rights reserved, please do not reuse them;
+  - the personal text content of the site (biography, project descriptions);
+  - fonts/ — Fusion Pixel font, licensed separately under the SIL Open Font
+    License 1.1 (see fonts/fusion-pixel-license/).
+
+以上 MIT 许可只适用于本仓库的代码（index.html 和配置文件），包括代码画出来的像素画。
+images/ 和 docs/ 里的照片、作品截图、图标、二维码，以及网站里的个人介绍文字，
+不在授权范围内，请不要拿去使用。fonts/ 里的字体按它自己的 SIL OFL 1.1 许可。

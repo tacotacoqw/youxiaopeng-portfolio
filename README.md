@@ -1,12 +1,24 @@
 # 游小鹏的像素小镇 · youxiaopeng.com
 
+**[English](#english) · [中文](#中文)**
+
+## English
+
+This is my personal website — not a résumé page, but a little pixel town you can walk around. You arrive by train, stroll down a street of market stalls (one per project), cross the river to the stage where I gave my talks, and read my story on the signposts along the way.
+
+Everything you see is drawn by code on a `<canvas>`: the people, cars, buildings and trees. It is one HTML file with no framework and no game engine. I'm a 12-year-old maker from Pingjiang, China, and I built it together with AI.
+
+- **Play it:** <https://youxiaopeng.com> (the site itself is in Chinese)
+- **Controls:** `WASD` to walk, `E` to look · on a phone, drag anywhere to walk or tap to go there
+- **Inspired by** Peter Oravec's wonderful [peteroravec.com](https://peteroravec.com). All art and code here were written from scratch.
+
+![Walking from home, across the plaza and the bridge, to the stage](docs/demo.gif)
+
+## 中文
+
 我的个人网站。它不是一张普通的简历页，而是一座可以走来走去的像素小镇：坐高铁到平江站下车，逛作品街、去广场、看舞台，走近建筑就能看到我的介绍、作品和经历。
 
 **在线访问：<https://youxiaopeng.com>**
-
-![从家门口出发，穿过广场、过桥，走到演讲舞台](docs/demo.gif)
-
-*从家门口出发，穿过广场、过马路、过桥，走到演讲舞台（13 秒）*
 
 ![开始页：平江站](docs/start.jpg)
 
@@ -82,5 +94,9 @@ vercel.json    部署配置
 ## 致谢
 
 小镇的画风和玩法参考了 Peter Oravec 的个人网站 [peteroravec.com](https://peteroravec.com)，谢谢他做了这么好玩的东西。本站的画面和代码都是重新写的，没有使用他的素材。
+
+## 许可
+
+代码用 [MIT 许可](LICENSE)，可以自由使用。`images/` 和 `docs/` 里的照片、截图，以及网站里的个人介绍文字不在授权范围内，请不要拿去用。
 
 © 2026 游小鹏
